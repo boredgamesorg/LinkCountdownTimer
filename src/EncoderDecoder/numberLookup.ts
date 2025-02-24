@@ -28,14 +28,14 @@ function decodeBase70(encoded: string): number {
 
 function encodeTimestamp(timestamp: number): string {
     const seconds = Math.floor(timestamp / 1000);
-    const offsetSeconds = seconds - 1_700_000_000;
+    const offsetSeconds = seconds;
     let encoded = encodeBase70(offsetSeconds);
 
     return encoded.padStart(5, BASE_70_SYMBOLS[0]);
 }
 
 function decodeTimestamp(encoded: string): number {
-    return (decodeBase70(encoded) + 1_700_000_000) * 1000;
+    return (decodeBase70(encoded)) * 1000;
 }
 
 function encodeTheme(theme: number): string {
