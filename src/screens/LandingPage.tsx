@@ -1,10 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 interface Props {
   color?: string;
+  color2?: string;
 }
 
-function LandingPage({ color }: Props) {
+function LandingPage({ color, color2 }: Props) {
   const [text, setText] = useState('');
   const [dateTime, setDateTime] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -21,6 +23,21 @@ function LandingPage({ color }: Props) {
     if (e.target.value.length <= 75) {
       setText(e.target.value);
     }
+  };
+
+  const buttonClicked = () => {
+    if (text == '') {
+      toast.error('Enter a heading for the countdown!');
+      return;
+    }
+
+    if (dateTime == '') {
+      toast.error('Select a countdown end date!');
+      return;
+    }
+
+    const timestamp = new Date(dateTime).getTime();
+    console.log(text, timestamp);
   };
 
   return (
@@ -50,6 +67,13 @@ function LandingPage({ color }: Props) {
           Select Date and Time
         </div>
       </div>
+      <button
+        className="text-xl px-8 py-4 rounded-2xl mt-2"
+        style={{ backgroundColor: color, color: color2 }}
+        onClick={buttonClicked}
+      >
+        Start Timer!
+      </button>
     </div>
   );
 }

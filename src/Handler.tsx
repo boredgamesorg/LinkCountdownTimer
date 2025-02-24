@@ -38,7 +38,7 @@ function Handler() {
         style={{ fill: colours?.secondary }}
       />
 
-      <LandingPage color={colours?.secondary} />
+      <LandingPage color={colours?.secondary} color2={colours?.primary} />
 
       <div
         className="text-xs sm:text-sm absolute right-4 bottom-4"
