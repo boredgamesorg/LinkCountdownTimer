@@ -62,13 +62,13 @@ export function getTimerData(sublink: string): TimerData {
 }
 
 
-const timestamp = Date.now();
-const theme = 123;
+// const timestamp = Date.now();
+// const theme = 123;
 
-console.log("Current timestamp:", timestamp);
+// console.log("Current timestamp:", timestamp);
 
-const link = getTimerLink(timestamp, theme);
-console.log("Generated Link:", link);
+// const link = getTimerLink(timestamp, theme);
+// console.log("Generated Link:", link);
 
-const data = getTimerData(link);
-console.log("Decoded Data:", data);
+// const data = getTimerData(link);
+// console.log("Decoded Data:", data);
