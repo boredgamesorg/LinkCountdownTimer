@@ -59,7 +59,7 @@ function Handler() {
             }
           />
           <Route
-            path="/:content"
+            path="/:context"
             element={
               <Timer
                 primary={colours?.primary}

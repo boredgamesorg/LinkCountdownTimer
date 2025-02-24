@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 import { SiteData } from '../contexts/SiteData';
 import { useContext } from 'react';
-import { getTimerLink } from '../EncoderDecoder/numberLookup';
+import { getTimerData, getTimerLink } from '../EncoderDecoder/numberLookup';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -55,8 +55,14 @@ function LandingPage({ color, color2 }: Props) {
       100 * context.theme.font +
       10 * context.theme.color +
       context.theme.design;
-
+    console.log('dateTime:', dateTime);
+    console.log('timeStamp:', timestamp);
+    new Promise((resolve) => setTimeout(resolve, 5000));
     const link = getTimerLink(timestamp, themeVal);
+
+    console.log('link: ', link);
+    const decode = getTimerData(link);
+    console.log(decode);
 
     navigate('/' + text + '-' + link);
   };
