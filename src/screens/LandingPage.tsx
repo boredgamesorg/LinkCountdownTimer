@@ -1,19 +1,19 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from "react";
 
 interface Props {
   color?: string;
 }
 
 function LandingPage({ color }: Props) {
-  const [text, setText] = useState('');
-  const [dateTime, setDateTime] = useState('');
+  const [text, setText] = useState("");
+  const [dateTime, setDateTime] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     if (textareaRef.current) {
-      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = "auto";
       textareaRef.current.style.height =
-        textareaRef.current.scrollHeight + 16 + 'px';
+        textareaRef.current.scrollHeight + 16 + "px";
     }
   }, [text]);
 
