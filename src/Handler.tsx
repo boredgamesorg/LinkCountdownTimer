@@ -1,6 +1,8 @@
-// import SettingsIcon from './assets/settings.svg';
+// import SettingsIcon from "./assets/settings.svg";
 import SettingsIcon from "./assets/settings.svg?react";
-import LandingPage from "./Screens/LandingPage";
+// import LandingPage from "./Screens/LandingPage";
+
+import Timer from "./components/timer";
 
 type ThemeColors = {
   primary: string;
@@ -25,7 +27,7 @@ function switchTheme(input: number): ThemeColors | null {
 }
 
 function Handler() {
-  const testStuff = [4, 0, 0];
+  const testStuff = [3, 0, 0];
   const colours: ThemeColors | null = switchTheme(testStuff[0]);
 
   return (
@@ -34,6 +36,23 @@ function Handler() {
       style={{ backgroundColor: colours?.primary }}
     >
       <SettingsIcon
+        className="absolute right-4 top-4 w-8 sm:right-8 sm:top-8 sm:w-12"
+        style={{ fill: colours?.secondary }}
+      />
+      <Timer primary={colours?.primary} secondary={colours?.secondary} />
+      <div
+        className="text-xs sm:text-sm absolute right-4 bottom-4 font-bold"
+        style={{ color: colours?.secondary }}
+      >
+        A project by Poseidon0z and Azaken
+      </div>
+    </div>
+  );
+}
+
+/**
+ 
+  <SettingsIcon
         className="absolute right-4 top-4 w-8 sm:right-8 sm:top-8 sm:w-12"
         style={{ fill: colours?.secondary }}
       />
@@ -46,8 +65,6 @@ function Handler() {
       >
         A project by Poseidon0z and Azaken
       </div>
-    </div>
-  );
-}
+ */
 
 export default Handler;
