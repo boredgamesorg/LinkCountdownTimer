@@ -1,5 +1,6 @@
 // import SettingsIcon from './assets/settings.svg';
 import SettingsIcon from './assets/settings.svg?react';
+import LandingPage from './screens/LandingPage';
 
 type ThemeColors = {
   primary: string;
@@ -29,13 +30,15 @@ function Handler() {
 
   return (
     <div
-      className="w-screen h-screen flex flex-col"
+      className="w-screen h-screen flex flex-col justify-center items-center"
       style={{ backgroundColor: colours?.primary }}
     >
       <SettingsIcon
         className="absolute right-4 top-4 w-8 sm:right-8 sm:top-8 sm:w-12"
         style={{ fill: colours?.secondary }}
       />
+
+      <LandingPage color={colours?.secondary} />
 
       <div
         className="text-xs sm:text-sm absolute right-4 bottom-4"
