@@ -1,14 +1,8 @@
-import { useState, ReactNode } from 'react';
-import { SiteData } from './SiteData';
+import { useState, ReactNode } from "react";
+import { SiteData, Theme } from "./SiteData";
 
 interface MyProviderProps {
   children: ReactNode;
-}
-
-interface Theme {
-  font: number;
-  color: number;
-  design: number;
 }
 
 export const SiteDataProvider = ({ children }: MyProviderProps) => {

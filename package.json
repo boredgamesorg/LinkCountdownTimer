@@ -12,8 +12,13 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.0.8",
     "react": "^19.0.0",
+    "react-datepicker": "^8.1.0",
     "react-dom": "^19.0.0",
+<<<<<<< HEAD
     "react-toastify": "^11.0.5",
+=======
+    "react-icons": "^5.5.0",
+>>>>>>> d34a73766a636226f173b00de34793ef33f8b277
     "tailwindcss": "^4.0.8"
   },
   "devDependencies": {

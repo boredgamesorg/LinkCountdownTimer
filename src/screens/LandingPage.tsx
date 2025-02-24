@@ -13,9 +13,9 @@ function LandingPage({ color, color2 }: Props) {
 
   useEffect(() => {
     if (textareaRef.current) {
-      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = "auto";
       textareaRef.current.style.height =
-        textareaRef.current.scrollHeight + 16 + 'px';
+        textareaRef.current.scrollHeight + 16 + "px";
     }
   }, [text]);
 

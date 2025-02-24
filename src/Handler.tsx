@@ -1,6 +1,6 @@
 // import SettingsIcon from './assets/settings.svg';
-import SettingsIcon from './assets/settings.svg?react';
-import LandingPage from './screens/LandingPage';
+import SettingsIcon from "./assets/settings.svg?react";
+import LandingPage from "./screens/LandingPage";
 
 type ThemeColors = {
   primary: string;
@@ -8,16 +8,16 @@ type ThemeColors = {
 };
 
 const themeMap: Record<number, ThemeColors> = {
-  0: { primary: '#F0EDCC', secondary: '#02343F' },
-  1: { primary: '#F9EDED', secondary: '#3F418D' },
-  2: { primary: '#F8EE00', secondary: '#111A24' },
-  3: { primary: '#EF6B6E', secondary: '#F7ED7E' },
-  4: { primary: '#FCF7F7', secondary: '#9A0001' },
-  5: { primary: '#D3C5E5', secondary: '#735DA5' },
-  6: { primary: '#FFF2D7', secondary: '#F98866' },
-  7: { primary: '#C2DFE5', secondary: '#65A4AC' },
-  8: { primary: '#F1F1F2', secondary: '#1995AD' },
-  9: { primary: '#F1D3B2', secondary: '#46211A' },
+  0: { primary: "#F0EDCC", secondary: "#02343F" },
+  1: { primary: "#F9EDED", secondary: "#3F418D" },
+  2: { primary: "#F8EE00", secondary: "#111A24" },
+  3: { primary: "#EF6B6E", secondary: "#F7ED7E" },
+  4: { primary: "#FCF7F7", secondary: "#9A0001" },
+  5: { primary: "#D3C5E5", secondary: "#735DA5" },
+  6: { primary: "#FFF2D7", secondary: "#F98866" },
+  7: { primary: "#C2DFE5", secondary: "#65A4AC" },
+  8: { primary: "#F1F1F2", secondary: "#1995AD" },
+  9: { primary: "#F1D3B2", secondary: "#46211A" },
 };
 
 function switchTheme(input: number): ThemeColors | null {
