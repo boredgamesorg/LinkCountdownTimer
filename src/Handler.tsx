@@ -1,8 +1,16 @@
-// import SettingsIcon from "./assets/settings.svg";
+// import SettingsIcon from './assets/settings.svg';
 import SettingsIcon from "./assets/settings.svg?react";
-// import LandingPage from "./Screens/LandingPage";
+import LandingPage from "./screens/LandingPage";
+import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 
-import Timer from "./components/timer";
+import { SiteData } from "./contexts/SiteData";
+import { useContext } from "react";
+
+// Define inline component
+const DynamicContent = () => {
+  const { content } = useParams();
+  return <h1>{content}</h1>;
+};
 
 type ThemeColors = {
   primary: string;
@@ -22,18 +30,26 @@ const themeMap: Record<number, ThemeColors> = {
   9: { primary: "#F1D3B2", secondary: "#46211A" },
 };
 
-function switchTheme(input: number): ThemeColors | null {
-  return themeMap[input] || null;
+function switchTheme(input?: number): ThemeColors {
+  if (!input) {
+    return themeMap[0];
+  }
+  return themeMap[input] || themeMap[0];
 }
 
 function Handler() {
-  const testStuff = [3, 0, 0];
-  const colours: ThemeColors | null = switchTheme(testStuff[0]);
+  const context = useContext(SiteData);
+
+  if (!context) {
+    throw new Error("Context is not available");
+  }
+
+  const colours: ThemeColors = switchTheme(context.theme.color);
 
   return (
     <div
       className="w-screen h-screen flex flex-col justify-center items-center"
-      style={{ backgroundColor: colours?.primary }}
+      style={{ backgroundColor: colours.primary }}
     >
       <SettingsIcon
         className="absolute right-4 top-4 w-8 sm:right-8 sm:top-8 sm:w-12"
@@ -54,14 +70,49 @@ function Handler() {
  
   <SettingsIcon
         className="absolute right-4 top-4 w-8 sm:right-8 sm:top-8 sm:w-12"
-        style={{ fill: colours?.secondary }}
+        style={{ fill: colours.secondary }}
       />
-
-      <LandingPage color={colours?.secondary} />
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <LandingPage color={colours.secondary} color2={colours.primary} />
+            }
+          />
+          <Route path="/:content" element={<DynamicContent />} />
+        </Routes>
+      </BrowserRouter>
 
       <div
         className="text-xs sm:text-sm absolute right-4 bottom-4"
-        style={{ color: colours?.secondary }}
+        style={{ color: colours.secondary }}
+      >
+        A project by Poseidon0z and Azaken
+      </div>
+ */
+
+/**
+ 
+  <SettingsIcon
+        className="absolute right-4 top-4 w-8 sm:right-8 sm:top-8 sm:w-12"
+        style={{ fill: colours.secondary }}
+      />
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <LandingPage color={colours.secondary} color2={colours.primary} />
+            }
+          />
+          <Route path="/:content" element={<DynamicContent />} />
+        </Routes>
+      </BrowserRouter>
+
+      <div
+        className="text-xs sm:text-sm absolute right-4 bottom-4"
+        style={{ color: colours.secondary }}
       >
         A project by Poseidon0z and Azaken
       </div>
