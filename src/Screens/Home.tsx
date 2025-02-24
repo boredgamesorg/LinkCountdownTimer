@@ -1,48 +1,45 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { FaCalendarAlt, FaCog } from "react-icons/fa";
+import { FaCalendarAlt } from "react-icons/fa";
+import settingsIcon from "../assets/settings.svg";
 
 const Home: React.FC = () => {
-  const [heading, setHeading] = useState("Enter heading here...");
   const [date, setDate] = useState<Date | null>(null);
 
   return (
-    <div className="h-screen flex items-center justify-center bg-gray-900">
-      <div className="relative w-[80%] h-[80%] bg-cream p-8 rounded-lg shadow-lg flex flex-col items-center justify-center">
-        <div className="absolute top-4 left-4 text-gray-700 text-sm">
-          Create Screen
-        </div>
-        <div className="absolute top-4 right-4 text-gray-700 text-xl cursor-pointer">
-          <FaCog />
-        </div>
-
+    <div className="h-screen flex flex-col items-center justify-center bg-[#F0EDCC]">
+      <div className="absolute top-4 right-4 text-[#02343F] text-xl cursor-pointer">
+        <img src={settingsIcon} alt="settings"></img>
+      </div>
+      <div className="h-3/12 w-3/4 flex flex-col items-center justify-center">
         <input
           type="text"
-          value={heading}
-          onChange={(e) => setHeading(e.target.value)}
-          className="text-2xl font-bold text-center bg-transparent border-b-2 border-gray-700 focus:outline-none focus:border-gray-900"
+          placeholder="Enter heading here..."
+          className="text-5xl text-[#02343F] font-bold text-center p-2 bg-transparent border-b-2 border-[#02343F] focus:outline-none "
         />
 
         <div className="mt-6 flex flex-col items-center">
-          <div className="relative flex items-center border-2 border-gray-700 px-4 py-2 rounded-lg">
+          <div className="relative flex items-center border-2 border-[#02343F] px-4 py-2 rounded-lg">
             <DatePicker
               selected={date}
               onChange={(d) => setDate(d)}
               showTimeSelect
               dateFormat="dd/MM/yyyy, hh:mm aa"
               placeholderText="dd/mm/yyyy, --:-- --"
-              className="outline-none bg-transparent"
+              className="outline-none bg-transparent text-3xl text-[#02343F] font-bold"
             />
             <FaCalendarAlt className="ml-2 text-gray-700" />
           </div>
-          <p className="text-sm text-gray-700 mt-2">Select Date and Time</p>
+          <p className="text-sm text-[#02343F] font-bold mt-2">
+            Select Date and Time
+          </p>
         </div>
-
-        <p className="absolute bottom-4 right-4 text-xs text-gray-700">
-          A project by Poseidontoz and Azaken
-        </p>
       </div>
+
+      <p className="absolute bottom-4 right-4 text-xs text-[#02343F] font-bold">
+        A project by Poseidon0z and Azaken
+      </p>
     </div>
   );
 };

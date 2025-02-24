@@ -1,6 +1,6 @@
-import { createContext } from 'react';
+import { createContext } from "react";
 
-interface Theme {
+export interface Theme {
   font: number;
   color: number;
   design: number;

@@ -1,9 +1,11 @@
+import { Theme } from '../contexts/SiteData.tsx';
+
 const BASE_70_SYMBOLS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_*+,<>[]".split("");
 const BASE_70 = BASE_70_SYMBOLS.length;
 
 interface TimerData {
     time: number;
-    theme: number;
+    theme: Theme;
 }
 
 function encodeBase70(num: number): string {
@@ -25,37 +27,48 @@ function decodeBase70(encoded: string): number {
 }
 
 function encodeTimestamp(timestamp: number): string {
-    const seconds = Math.floor(timestamp / 1000); 
-    const offsetSeconds = seconds - 1_700_000_000; 
+    const seconds = Math.floor(timestamp / 1000);
+    const offsetSeconds = seconds - 1_700_000_000;
     let encoded = encodeBase70(offsetSeconds);
 
-    return encoded.padStart(5, BASE_70_SYMBOLS[0]); 
+    return encoded.padStart(5, BASE_70_SYMBOLS[0]);
 }
 
 function decodeTimestamp(encoded: string): number {
     return (decodeBase70(encoded) + 1_700_000_000) * 1000;
 }
 
+function encodeTheme(theme: number): string {
+    return theme.toString().padStart(4, '0'); 
+}
+
+function decodeTheme(encoded: string): Theme {
+    return {
+        font: parseInt(encoded[1]), 
+        color: parseInt(encoded[2]), 
+        design: parseInt(encoded[3]), 
+    };
+}
+
 export function getTimerLink(time: number, theme: number): string {
-    return encodeTimestamp(time) + encodeBase70(theme);
+    return encodeTimestamp(time) + encodeTheme(theme);
 }
 
 export function getTimerData(sublink: string): TimerData {
     return {
-        time: decodeTimestamp(sublink.substring(0, 5)), 
-        theme: decodeBase70(sublink.substring(5)) 
+        time: decodeTimestamp(sublink.substring(0, 5)),
+        theme: decodeTheme(sublink.substring(5)),
     };
 }
 
-/**  Example Usage
-const timestamp = Date.now(); // Current timestamp
-const theme = 1200; // Example theme
 
-console.log("current stamp: ", timestamp);
+const timestamp = Date.now();
+const theme = 123;
+
+console.log("Current timestamp:", timestamp);
 
 const link = getTimerLink(timestamp, theme);
 console.log("Generated Link:", link);
 
 const data = getTimerData(link);
 console.log("Decoded Data:", data);
-*/

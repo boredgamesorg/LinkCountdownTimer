@@ -1,10 +1,11 @@
-import { useState } from "react";
-import { SiteDataProvider } from "./contexts/SiteDataProvider";
+//import { useState } from "react";
+i; //mport { SiteDataProvider } from "./contexts/SiteDataProvider";
+import Home from "./Screens/Home";
 
 function App() {
-  const [selectedDate, setSelectedDate] = useState("");
+  //const [selectedDate, setSelectedDate] = useState("");
 
-  return (
+  /**return (
     <SiteDataProvider>
       <div className="p-4 w-80 border rounded-lg shadow-md flex flex-col items-center gap-4">
         <label className="text-gray-700 font-medium">Select Date & Time</label>
@@ -16,7 +17,9 @@ function App() {
         />
       </div>
     </SiteDataProvider>
-  );
+  );*/
+
+  return <Home />;
 }
 
 export default App;
