@@ -1,21 +1,35 @@
 import { useState, useRef, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
+import { SiteData } from '../contexts/SiteData';
+import { useContext } from 'react';
+import { getTimerLink } from '../EncoderDecoder/numberLookup';
+
+import { useNavigate } from 'react-router-dom';
+
 interface Props {
   color?: string;
   color2?: string;
 }
 
 function LandingPage({ color, color2 }: Props) {
+  const navigate = useNavigate();
+
+  const context = useContext(SiteData);
+
+  if (!context) {
+    throw new Error('Context is not available');
+  }
+
   const [text, setText] = useState('');
   const [dateTime, setDateTime] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     if (textareaRef.current) {
-      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height = 'auto';
       textareaRef.current.style.height =
-        textareaRef.current.scrollHeight + 16 + "px";
+        textareaRef.current.scrollHeight + 16 + 'px';
     }
   }, [text]);
 
@@ -37,7 +51,14 @@ function LandingPage({ color, color2 }: Props) {
     }
 
     const timestamp = new Date(dateTime).getTime();
-    console.log(text, timestamp);
+    const themeVal =
+      100 * context.theme.font +
+      10 * context.theme.color +
+      context.theme.design;
+
+    const link = getTimerLink(timestamp, themeVal);
+
+    navigate('/' + text + '-' + link);
   };
 
   return (
