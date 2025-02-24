@@ -25,7 +25,7 @@ function switchTheme(input: number): ThemeColors | null {
 }
 
 function Handler() {
-  const testStuff = [0, 0, 0];
+  const testStuff = [4, 0, 0];
   const colours: ThemeColors | null = switchTheme(testStuff[0]);
 
   return (
