@@ -1,6 +1,6 @@
 // import SettingsIcon from './assets/settings.svg';
 import SettingsIcon from "./assets/settings.svg?react";
-import LandingPage from "./screens/LandingPage";
+import LandingPage from "./Screens/LandingPage";
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 
 import { SiteData } from "./contexts/SiteData";
@@ -53,12 +53,23 @@ function Handler() {
     >
       <SettingsIcon
         className="absolute right-4 top-4 w-8 sm:right-8 sm:top-8 sm:w-12"
-        style={{ fill: colours?.secondary }}
+        style={{ fill: colours.secondary }}
       />
-      <Timer primary={colours?.primary} secondary={colours?.secondary} />
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <LandingPage color={colours.secondary} color2={colours.primary} />
+            }
+          />
+          <Route path="/:content" element={<DynamicContent />} />
+        </Routes>
+      </BrowserRouter>
+
       <div
-        className="text-xs sm:text-sm absolute right-4 bottom-4 font-bold"
-        style={{ color: colours?.secondary }}
+        className="text-xs sm:text-sm absolute right-4 bottom-4"
+        style={{ color: colours.secondary }}
       >
         A project by Poseidon0z and Azaken
       </div>

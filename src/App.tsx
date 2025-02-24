@@ -1,6 +1,6 @@
-import { SiteDataProvider } from './contexts/SiteDataProvider';
-import Handler from './Handler';
-import { ToastContainer } from 'react-toastify';
+import { SiteDataProvider } from "./contexts/SiteDataProvider";
+import Handler from "./Handler";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (

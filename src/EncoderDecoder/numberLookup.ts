@@ -31,7 +31,7 @@ function encodeTimestamp(timestamp: number): string {
     const offsetSeconds = seconds;
     let encoded = encodeBase70(offsetSeconds);
 
-    return encoded.padStart(5, BASE_70_SYMBOLS[0]);
+    return encoded.padStart(7, BASE_70_SYMBOLS[0]);
 }
 
 function decodeTimestamp(encoded: string): number {
@@ -56,8 +56,8 @@ export function getTimerLink(time: number, theme: number): string {
 
 export function getTimerData(sublink: string): TimerData {
     return {
-        time: decodeTimestamp(sublink.substring(0, 5)),
-        theme: decodeTheme(sublink.substring(5)),
+        time: decodeTimestamp(sublink.substring(0, 7)),
+        theme: decodeTheme(sublink.substring(7)),
     };
 }
 
