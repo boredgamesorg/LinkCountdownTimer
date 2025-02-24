@@ -74,7 +74,14 @@ function Handler() {
         className="text-xs sm:text-sm absolute right-4 bottom-4"
         style={{ color: colours?.secondary }}
       >
-        A project by Poseidon0z and Azaken
+        A project by{' '}
+        <span className="underline">
+          <a href="https://github.com/poseidon0z">Poseidon0z</a>
+        </span>{' '}
+        and{' '}
+        <span className="underline">
+          <a href="https://github.com/Azaken1248">Azaken</a>
+        </span>
       </div>
     </div>
   );
