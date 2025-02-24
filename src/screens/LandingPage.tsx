@@ -24,11 +24,14 @@ function LandingPage({ color }: Props) {
   };
 
   return (
-    <div className="w-1/2 flex flex-col items-center gap-4" style={{ color }}>
+    <div
+      className="w-5/6 md:w-1/2 flex flex-col items-center gap-4"
+      style={{ color }}
+    >
       <textarea
         ref={textareaRef}
         placeholder="Enter heading here..."
-        className="w-full text-center text-6xl border-b-4 focus:outline-none placeholder-opacity-75 bg-transparent resize-none overflow-hidden leading-tight"
+        className="w-full text-center text-2xl sm:text-4xl lg:text-6xl border-b-4 focus:outline-none placeholder-opacity-75 bg-transparent resize-none overflow-hidden leading-tight"
         style={{ color, borderColor: color }}
         rows={1}
         maxLength={75}
@@ -36,10 +39,10 @@ function LandingPage({ color }: Props) {
         onChange={handleChange}
       />
 
-      <div className="w-4/6">
+      <div className="w-5/6 sm:w-4/6">
         <input
           type="datetime-local"
-          className="w-full text-3xl border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={dateTime}
           onChange={(e) => setDateTime(e.target.value)}
         />
