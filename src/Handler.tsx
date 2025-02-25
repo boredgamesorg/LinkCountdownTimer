@@ -1,5 +1,6 @@
 // import SettingsIcon from './assets/settings.svg';
-import LandingPage from "./screens/LandingPage";
+import LandingPage from "./Screens/LandingPage";
+
 import { Routes, Route, useLocation } from "react-router-dom";
 
 import Timer from "./components/Timer";
@@ -10,8 +11,6 @@ import { splitHeadingAndInfo } from "./EncoderDecoder/scripts";
 
 import StarField from "./components/Designs/StarField";
 import Trunk from "./components/Designs/Trunk";
-import Clouds from "./components/Designs/Clouds";
-import Net from "./components/Designs/Net";
 
 type ThemeColors = {
   primary: string;
