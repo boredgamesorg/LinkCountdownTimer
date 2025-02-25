@@ -1,6 +1,6 @@
 // import SettingsIcon from './assets/settings.svg';
 import SettingsIcon from "./assets/settings.svg?react";
-import LandingPage from "./screens/LandingPage";
+import LandingPage from "./Screens/LandingPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { SiteData } from "./contexts/SiteData";
