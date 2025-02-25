@@ -4,3 +4,103 @@ body {
   margin: 0;
   padding: 0;
 }
+
+@font-face {
+  font-family: "Abhaya Libre SemiBold";
+  src: url("/src/assets/fonts/content/AbhayaLibre-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Bigshot One";
+  src: url("/src/assets/fonts/numbers/BigshotOne-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Lao Sans Pro";
+  src: url("/src/assets/fonts/content/NotoSansLao-VariableFont_wdth,wght.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Graduate";
+  src: url("/src/assets/fonts/numbers/Graduate-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Limelight";
+  src: url("/src/assets/fonts/content/Limelight-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "BM HANNA";
+  src: url("/src/assets/fonts/numbers/BM-HANNA.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Andada Pro";
+  src: url("/src/assets/fonts/content/AndadaPro-VariableFont_wght.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Hahmlet";
+  src: url("/src/assets/fonts/numbers/Hahmlet-VariableFont_wght.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Averia Serif Libre";
+  src: url("/src/assets/fonts/content/AveriaSerifLibre-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Ga Maamli";
+  src: url("/src/assets/fonts/numbers/GaMaamli-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Sunshiney";
+  src: url("/src/assets/fonts/content/Sunshiney-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Arbutus";
+  src: url("/src/assets/fonts/numbers/Arbutus-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Carrois Gothic SC";
+  src: url("/src/assets/fonts/content/CarroisGothicSC-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Glass Antiqua";
+  src: url("/src/assets/fonts/numbers/GlassAntiqua-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "KoPub Batang";
+  src: url("/src/assets/fonts/content/KoPubBatang-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Vidaloka";
+  src: url("/src/assets/fonts/numbers/Vidaloka-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Hepta Slab";
+  src: url("/src/assets/fonts/content/HeptaSlab-VariableFont_wght.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Hermeneus One";
+  src: url("/src/assets/fonts/numbers/HermeneusOne-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Comic Neue";
+  src: url("/src/assets/fonts/content/ComicNeue-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Germania One";
+  src: url("/src/assets/fonts/numbers/GermaniaOne-Regular.ttf") format("truetype");
+}

@@ -6,12 +6,17 @@ import Timer from './components/Timer';
 import Settings from './screens/Settings';
 import SettingsIcon from './components/SettingsIcon';
 import { getTimerData } from './EncoderDecoder/numberLookup';
+import { splitHeadingAndInfo } from './EncoderDecoder/scripts';
 
 type ThemeColors = {
   primary: string;
   secondary: string;
 };
 
+type ThemeFonts = {
+  content: string;
+  numbers: string;
+};
 const themeMap: Record<number, ThemeColors> = {
   0: { primary: '#F0EDCC', secondary: '#02343F' },
   1: { primary: '#F9EDED', secondary: '#3F418D' },
@@ -25,6 +30,26 @@ const themeMap: Record<number, ThemeColors> = {
   9: { primary: '#F1D3B2', secondary: '#46211A' },
 };
 
+const fontPairs: Record<number, ThemeFonts> = {
+  0: { content: 'Abhaya Libre SemiBold', numbers: 'Bigshot One' },
+  1: { content: 'Lao Sans Pro', numbers: 'Graduate' },
+  2: { content: 'Limelight', numbers: 'BM HANNA' },
+  3: { content: 'Andada Pro', numbers: 'Hahmlet' },
+  4: { content: 'Averia Serif Libre', numbers: 'Ga Maamli' },
+  5: { content: 'Sunshiney', numbers: 'Arbutus' },
+  6: { content: 'Carrois Gothic SC', numbers: 'Glass Antiqua' },
+  7: { content: 'KoPub Batang', numbers: 'Vidaloka' },
+  8: { content: 'Hepta Slab', numbers: 'Hermeneus One' },
+  9: { content: 'Comic Neue', numbers: 'Germania One' },
+};
+
+function switchFont(input?: number): ThemeFonts {
+  if (!input) {
+    return fontPairs[0];
+  }
+  return fontPairs[input] || fontPairs[0];
+}
+
 function switchTheme(input?: number): ThemeColors {
   if (!input) {
     return themeMap[0];
@@ -34,15 +59,18 @@ function switchTheme(input?: number): ThemeColors {
 
 function Handler() {
   const location = useLocation();
-  const themeData = getTimerData(location.pathname.substring(1));
-  // console.log(themeData);
+  const path = splitHeadingAndInfo(location.pathname);
+  console.log(path);
+  const themeData = getTimerData(path.info);
+  console.log(themeData);
 
   const colours: ThemeColors = switchTheme(themeData.theme.color);
+  const fonts: ThemeFonts = switchFont(themeData.theme.font);
 
   return (
     <div
       className="w-screen h-screen flex flex-col justify-center items-center"
-      style={{ backgroundColor: colours.primary }}
+      style={{ backgroundColor: colours.primary, fontFamily: fonts.content }}
     >
       <SettingsIcon color={colours.secondary} />
       <Routes>
