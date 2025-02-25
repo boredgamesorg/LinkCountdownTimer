@@ -64,7 +64,7 @@ function LandingPage({ color, color2 }: Props) {
     const decode = getTimerData(link);
     console.log(decode);
 
-    navigate('/' + text + '-' + link);
+    navigate('/timer/' + text + '-' + link);
   };
 
   return (
