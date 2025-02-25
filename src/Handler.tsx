@@ -85,7 +85,11 @@ function Handler() {
   return (
     <div
       className="w-screen min-h-screen flex flex-col justify-center items-center relative"
-      style={{ backgroundColor: colours.primary, fontFamily: fonts.content }}
+      style={{
+        backgroundColor: colours.primary,
+        fontFamily: fonts.content,
+        color: colours.secondary,
+      }}
     >
       <BackgroundDesign />
       <SettingsIcon color={colours.secondary} />
@@ -96,7 +100,10 @@ function Handler() {
             <LandingPage color={colours.secondary} color2={colours.primary} />
           }
         />
-        <Route path="/settings/*" element={<Settings />} />
+        <Route
+          path="/settings/*"
+          element={<Settings color={colours.secondary} />}
+        />
         <Route
           path="/timer/:context"
           element={

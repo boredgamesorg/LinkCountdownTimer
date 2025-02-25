@@ -4,7 +4,11 @@ import FontSelection from '../components/FontSelection';
 import Arrow from '../assets/arrow.svg?react';
 import { useNavigate } from 'react-router-dom';
 
-function Settings() {
+interface Props {
+  color: string;
+}
+
+function Settings({ color }: Props) {
   const navigate = useNavigate();
 
   const exitSettings = () => {
@@ -22,8 +26,12 @@ function Settings() {
 
   return (
     <>
-      <Arrow className="absolute top-8 left-8" onClick={exitSettings} />
-      <div className="m-4 my-24">
+      <Arrow
+        className="absolute top-8 left-8"
+        style={{ fill: color, stroke: color }}
+        onClick={exitSettings}
+      />
+      <div className="m-4 my-24 z-10">
         <FontSelection />
         <ColourSelection />
         <DesignSelection />
