@@ -8,7 +8,16 @@ function Settings() {
   const navigate = useNavigate();
 
   const exitSettings = () => {
-    navigate(-1);
+    const path = location.pathname;
+
+    // Case: /settings/heading-data -> /timer/heading-data
+    if (/^\/settings\/[^/-]+-[^/]+$/.test(path)) {
+      navigate(path.replace('/settings/', '/timer/'));
+    }
+    // Case: /settings/-data -> /-data
+    else if (/^\/settings\/-?[^/]*$/.test(path)) {
+      navigate(path.replace('/settings/', '/'));
+    }
   };
 
   return (
