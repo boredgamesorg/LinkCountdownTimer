@@ -1,5 +1,5 @@
 // import SettingsIcon from './assets/settings.svg';
-import LandingPage from "./Screens/LandingPage";
+import LandingPage from "./screens/LandingPage";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 import Timer from "./components/Timer";
