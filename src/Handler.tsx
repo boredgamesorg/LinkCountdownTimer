@@ -1,9 +1,9 @@
 // import SettingsIcon from './assets/settings.svg';
-import LandingPage from './Screens/LandingPage';
+import LandingPage from './screens/LandingPage';
 import { Routes, Route, useLocation } from 'react-router-dom';
 
 import Timer from './components/Timer';
-import Settings from './Screens/Settings';
+import Settings from './screens/Settings';
 import SettingsIcon from './components/SettingsIcon';
 import { getTimerData } from './EncoderDecoder/numberLookup';
 import { splitHeadingAndInfo } from './EncoderDecoder/scripts';
