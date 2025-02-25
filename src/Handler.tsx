@@ -84,7 +84,7 @@ function Handler() {
 
   return (
     <div
-      className="w-screen h-screen flex flex-col justify-center items-center relative"
+      className="w-screen min-h-screen flex flex-col justify-center items-center relative"
       style={{ backgroundColor: colours.primary, fontFamily: fonts.content }}
     >
       <BackgroundDesign />
