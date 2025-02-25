@@ -8,6 +8,11 @@ import SettingsIcon from "./components/SettingsIcon";
 import { getTimerData } from "./EncoderDecoder/numberLookup";
 import { splitHeadingAndInfo } from "./EncoderDecoder/scripts";
 
+import StarField from "./components/Designs/StarField";
+import Trunk from "./components/Designs/Trunk";
+import Clouds from "./components/Designs/Clouds";
+import Net from "./components/Designs/Net";
+
 type ThemeColors = {
   primary: string;
   secondary: string;
@@ -43,6 +48,12 @@ const fontPairs: Record<number, ThemeFonts> = {
   9: { content: "Comic Neue", numbers: "Germania One" },
 };
 
+const designPairs: Record<number, React.FC> = {
+  0: () => null,
+  1: StarField,
+  2: Trunk,
+};
+
 function switchFont(input?: number): ThemeFonts {
   if (!input) {
     return fontPairs[0];
@@ -57,6 +68,10 @@ function switchTheme(input?: number): ThemeColors {
   return themeMap[input] || themeMap[0];
 }
 
+function switchDesign(input?: number): React.FC {
+  return designPairs[input || 0] || designPairs[0];
+}
+
 function Handler() {
   const location = useLocation();
   const path = splitHeadingAndInfo(location.pathname);
@@ -66,12 +81,14 @@ function Handler() {
 
   const colours: ThemeColors = switchTheme(themeData.theme.color);
   const fonts: ThemeFonts = switchFont(themeData.theme.font);
+  const BackgroundDesign = switchDesign(themeData.theme.design);
 
   return (
     <div
-      className="w-screen h-screen flex flex-col justify-center items-center"
+      className="w-screen h-screen flex flex-col justify-center items-center relative"
       style={{ backgroundColor: colours.primary, fontFamily: fonts.content }}
     >
+      <BackgroundDesign />
       <SettingsIcon color={colours.secondary} />
       <Routes>
         <Route
