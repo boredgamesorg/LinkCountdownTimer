@@ -1,9 +1,10 @@
-import { useState, useRef, useEffect } from "react";
-import { toast } from "react-toastify";
+import { useState, useRef, useEffect } from 'react';
+import { toast } from 'react-toastify';
 
-import { getTimerData, getTimerLink } from "../EncoderDecoder/numberLookup";
+import { getTimerData, getTimerLink } from '../EncoderDecoder/numberLookup';
 
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from 'react-router-dom';
+import { splitHeadingAndInfo } from '../EncoderDecoder/scripts';
 
 interface Props {
   color?: string;
@@ -14,20 +15,20 @@ function LandingPage({ color, color2 }: Props) {
   const navigate = useNavigate();
 
   const location = useLocation();
-  var context = getTimerData(location.pathname.substring(1));
-  if (location.pathname == "/") {
+  var context = getTimerData(splitHeadingAndInfo(location.pathname).info);
+  if (location.pathname == '/') {
     context = { time: 0, theme: { font: 0, color: 0, design: 0 } };
   }
 
-  const [text, setText] = useState("");
-  const [dateTime, setDateTime] = useState("");
+  const [text, setText] = useState('');
+  const [dateTime, setDateTime] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     if (textareaRef.current) {
-      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height = 'auto';
       textareaRef.current.style.height =
-        textareaRef.current.scrollHeight + 16 + "px";
+        textareaRef.current.scrollHeight + 16 + 'px';
     }
   }, [text]);
 
@@ -38,13 +39,13 @@ function LandingPage({ color, color2 }: Props) {
   };
 
   const buttonClicked = () => {
-    if (text == "") {
-      toast.error("Enter a heading for the countdown!");
+    if (text == '') {
+      toast.error('Enter a heading for the countdown!');
       return;
     }
 
-    if (dateTime == "") {
-      toast.error("Select a countdown end date!");
+    if (dateTime == '') {
+      toast.error('Select a countdown end date!');
       return;
     }
 
@@ -54,9 +55,9 @@ function LandingPage({ color, color2 }: Props) {
       10 * context.theme.color +
       context.theme.design;
 
-    // new Promise((resolve) => setTimeout(resolve, 5000));
     const link = getTimerLink(timestamp, themeVal);
-    navigate("/timer/" + text + "-" + link);
+
+    navigate('/timer/' + text + '-' + link);
   };
 
   return (
