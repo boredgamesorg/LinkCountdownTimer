@@ -2,26 +2,12 @@ import { useState, useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
 import { getTimerData } from '../EncoderDecoder/numberLookup';
+import { splitHeadingAndInfo } from '../EncoderDecoder/scripts';
 
 interface Props {
   primary: string;
   secondary: string;
 }
-
-const splitHeadingAndInfo = (
-  input: string
-): { heading: string; info: string } => {
-  const lastDashIndex = input.lastIndexOf('-');
-
-  if (lastDashIndex === -1) {
-    return { heading: input, info: '' }; // No '-' found, assume entire string is the heading
-  }
-
-  return {
-    heading: input.substring(0, lastDashIndex),
-    info: input.substring(lastDashIndex + 1),
-  };
-};
 
 const getTimeRemaining = (futureTimestamp: number) => {
   const now = Date.now(); // Current time in milliseconds

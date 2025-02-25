@@ -1,17 +1,22 @@
 // import SettingsIcon from './assets/settings.svg';
-import SettingsIcon from "./assets/settings.svg?react";
 import LandingPage from "./Screens/LandingPage";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
-import { SiteData } from "./contexts/SiteData";
-import { useContext } from "react";
 import Timer from "./components/Timer";
+import Settings from "./Screens/Settings";
+import SettingsIcon from "./components/SettingsIcon";
+import { getTimerData } from "./EncoderDecoder/numberLookup";
+import { splitHeadingAndInfo } from "./EncoderDecoder/scripts";
 
 type ThemeColors = {
   primary: string;
   secondary: string;
 };
 
+type ThemeFonts = {
+  content: string;
+  numbers: string;
+};
 const themeMap: Record<number, ThemeColors> = {
   0: { primary: "#F0EDCC", secondary: "#02343F" },
   1: { primary: "#F9EDED", secondary: "#3F418D" },
@@ -25,6 +30,26 @@ const themeMap: Record<number, ThemeColors> = {
   9: { primary: "#F1D3B2", secondary: "#46211A" },
 };
 
+const fontPairs: Record<number, ThemeFonts> = {
+  0: { content: "Abhaya Libre SemiBold", numbers: "Bigshot One" },
+  1: { content: "Lao Sans Pro", numbers: "Graduate" },
+  2: { content: "Limelight", numbers: "BM HANNA" },
+  3: { content: "Andada Pro", numbers: "Hahmlet" },
+  4: { content: "Averia Serif Libre", numbers: "Ga Maamli" },
+  5: { content: "Sunshiney", numbers: "Arbutus" },
+  6: { content: "Carrois Gothic SC", numbers: "Glass Antiqua" },
+  7: { content: "KoPub Batang", numbers: "Vidaloka" },
+  8: { content: "Hepta Slab", numbers: "Hermeneus One" },
+  9: { content: "Comic Neue", numbers: "Germania One" },
+};
+
+function switchFont(input?: number): ThemeFonts {
+  if (!input) {
+    return fontPairs[0];
+  }
+  return fontPairs[input] || fontPairs[0];
+}
+
 function switchTheme(input?: number): ThemeColors {
   if (!input) {
     return themeMap[0];
@@ -33,48 +58,48 @@ function switchTheme(input?: number): ThemeColors {
 }
 
 function Handler() {
-  const context = useContext(SiteData);
+  const location = useLocation();
+  const path = splitHeadingAndInfo(location.pathname);
+  console.log(path);
+  const themeData = getTimerData(path.info);
+  console.log(themeData);
 
-  if (!context) {
-    throw new Error("Context is not available");
-  }
-
-  const colours: ThemeColors = switchTheme(context.theme.color);
+  const colours: ThemeColors = switchTheme(themeData.theme.color);
+  const fonts: ThemeFonts = switchFont(themeData.theme.font);
 
   return (
     <div
       className="w-screen h-screen flex flex-col justify-center items-center"
-      style={{ backgroundColor: colours.primary }}
+      style={{ backgroundColor: colours.primary, fontFamily: fonts.content }}
     >
-      <SettingsIcon
-        className="absolute right-4 top-4 w-8 sm:right-8 sm:top-8 sm:w-12"
-        style={{ fill: colours.secondary }}
-      />
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <LandingPage color={colours.secondary} color2={colours.primary} />
-            }
-          />
-          <Route
-            path="/:context"
-            element={
-              <Timer
-                primary={colours?.primary}
-                secondary={colours?.secondary}
-              />
-            }
-          />
-        </Routes>
-      </BrowserRouter>
-
+      <SettingsIcon color={colours.secondary} />
+      <Routes>
+        <Route
+          path="/*"
+          element={
+            <LandingPage color={colours.secondary} color2={colours.primary} />
+          }
+        />
+        <Route path="/settings/*" element={<Settings />} />
+        <Route
+          path="/timer/:context"
+          element={
+            <Timer primary={colours?.primary} secondary={colours?.secondary} />
+          }
+        />
+      </Routes>
       <div
         className="text-xs sm:text-sm absolute right-4 bottom-4"
         style={{ color: colours?.secondary }}
       >
-        A project by Poseidon0z and Azaken
+        A project by{" "}
+        <span className="underline">
+          <a href="https://github.com/poseidon0z">Poseidon0z</a>
+        </span>{" "}
+        and{" "}
+        <span className="underline">
+          <a href="https://github.com/Azaken1248">Azaken</a>
+        </span>
       </div>
     </div>
   );
