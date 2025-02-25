@@ -30,6 +30,7 @@ function DesignSelection() {
       <div className="flex justify-center gap-4 w-full flex-wrap">
         {paginatedThemes[page].map(([key, theme]) => (
           <div
+            id={theme.primary}
             key={key}
             className="rounded-lg w-24 h-24 sm:w-64 sm:h-48 lg:w-96 flex justify-center items-center text-center border-2 border-[#282828] hover:border-8 overflow-hidden"
           >

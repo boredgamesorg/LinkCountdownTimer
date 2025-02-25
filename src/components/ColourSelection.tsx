@@ -1,36 +1,44 @@
 import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function ColourSelection() {
-  const themeMap: Record<number, { primary: string; secondary: string }> = {
-    0: { primary: '#F0EDCC', secondary: '#02343F' },
-    1: { primary: '#F9EDED', secondary: '#3F418D' },
-    2: { primary: '#F8EE00', secondary: '#111A24' },
-    3: { primary: '#EF6B6E', secondary: '#F7ED7E' },
-    4: { primary: '#FCF7F7', secondary: '#9A0001' },
-    5: { primary: '#D3C5E5', secondary: '#735DA5' },
-    6: { primary: '#FFF2D7', secondary: '#F98866' },
-    7: { primary: '#C2DFE5', secondary: '#65A4AC' },
-    8: { primary: '#F1F1F2', secondary: '#1995AD' },
-    9: { primary: '#F1D3B2', secondary: '#46211A' },
-  };
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const themeEntries = Object.entries(themeMap);
+  const themeMap = [
+    { primary: '#F0EDCC', secondary: '#02343F' },
+    { primary: '#F9EDED', secondary: '#3F418D' },
+    { primary: '#F8EE00', secondary: '#111A24' },
+    { primary: '#EF6B6E', secondary: '#F7ED7E' },
+    { primary: '#FCF7F7', secondary: '#9A0001' },
+    { primary: '#D3C5E5', secondary: '#735DA5' },
+    { primary: '#FFF2D7', secondary: '#F98866' },
+    { primary: '#C2DFE5', secondary: '#65A4AC' },
+    { primary: '#F1F1F2', secondary: '#1995AD' },
+    { primary: '#F1D3B2', secondary: '#46211A' },
+  ];
+
   const paginatedThemes = [
-    themeEntries.slice(0, 4),
-    themeEntries.slice(4, 8),
-    themeEntries.slice(8, 10),
+    themeMap.slice(0, 4),
+    themeMap.slice(4, 8),
+    themeMap.slice(8, 10),
   ];
 
   const [page, setPage] = useState(0);
-
+  const changeTheme = (index: number) => {
+    var path = location.pathname;
+    path = path.slice(0, -2) + (index + 4 * page) + path.slice(-1);
+    navigate(path);
+  };
   return (
     <div className="flex flex-col items-center gap-4 p-4 w-full my-4">
       <h2 className="text-4xl sm:text-5xl">Color</h2>
       <div className="flex justify-center gap-4 w-full flex-wrap">
-        {paginatedThemes[page].map(([key, theme]) => (
+        {paginatedThemes[page].map((theme, index) => (
           <div
-            key={key}
+            key={index}
             className="rounded-lg w-24 h-24 sm:w-64 sm:h-48 lg:w-96 flex justify-center items-center text-center border-2 border-[#282828] hover:border-8 overflow-hidden"
+            onClick={() => changeTheme(index)}
           >
             <div
               className="w-full h-full flex justify-center items-center"

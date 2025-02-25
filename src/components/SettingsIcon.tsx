@@ -10,27 +10,23 @@ function SettingsIcon({ color }: Props) {
   const navigate = useNavigate();
 
   const toggleSettings = () => {
-    const match = location.pathname.match(/^\/(settings|timer)\/([^/]+)$/);
+    const path = location.pathname;
 
-    if (match) {
-      // Case: /settings/title-timeTheme or /timer/title-timeTheme
-      const [, currentRoute, context] = match;
-      const newRoute = currentRoute === 'settings' ? 'timer' : 'settings';
-      navigate(`/${newRoute}/${context}`);
-    } else {
-      // Case: /timeTheme (without '-')
-      const simpleMatch = location.pathname.match(/^\/([^/-]*)$/);
-      if (simpleMatch) {
-        const [, simpleContext] = simpleMatch;
-        navigate(`/settings/${simpleContext}`);
-      } else {
-        // Case: /settings/timeTheme -> /timeTheme
-        const settingsMatch = location.pathname.match(/^\/settings\/([^/-]*)$/);
-        if (settingsMatch) {
-          const [, simpleContext] = settingsMatch;
-          navigate(`/${simpleContext}`);
-        }
-      }
+    // Case: /settings/heading-data -> /timer/heading-data
+    if (/^\/settings\/[^/-]+-[^/]+$/.test(path)) {
+      navigate(path.replace('/settings/', '/timer/'));
+    }
+    // Case: /settings/-data -> /-data
+    else if (/^\/settings\/-?[^/]*$/.test(path)) {
+      navigate(path.replace('/settings/', '/'));
+    }
+    // Case: /timer/heading-data -> /settings/heading-data
+    else if (/^\/timer\/[^/]+$/.test(path)) {
+      navigate(path.replace('/timer/', '/settings/'));
+    }
+    // Case: / or /-data -> /settings/ or /settings/-data
+    else if (/^\/(-[^/]*)?$/.test(path)) {
+      navigate(`/settings${path}`);
     }
   };
 
