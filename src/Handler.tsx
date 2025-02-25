@@ -52,7 +52,7 @@ function Handler() {
             <LandingPage color={colours.secondary} color2={colours.primary} />
           }
         />
-        <Route path="/settings/:context" element={<Settings />} />
+        <Route path="/settings/*" element={<Settings />} />
         <Route
           path="/timer/:context"
           element={
