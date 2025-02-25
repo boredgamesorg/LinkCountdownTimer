@@ -54,7 +54,7 @@ function LandingPage({ color, color2 }: Props) {
       10 * context.theme.color +
       context.theme.design;
 
-    new Promise((resolve) => setTimeout(resolve, 5000));
+    // new Promise((resolve) => setTimeout(resolve, 5000));
     const link = getTimerLink(timestamp, themeVal);
     navigate('/timer/' + text + '-' + link);
   };
