@@ -54,7 +54,7 @@ function Timer({ primary, secondary }: Props) {
   }, [time]);
 
   return (
-    <div className="w-full max-w-4xl flex flex-col justify-center items-center px-4">
+    <div className="w-full max-w-4xl flex flex-col justify-center items-center px-4 z-10">
       <div
         style={{ color: secondary }}
         className="font-bold text-4xl md:text-5xl lg:text-[64px] text-center w-full"
