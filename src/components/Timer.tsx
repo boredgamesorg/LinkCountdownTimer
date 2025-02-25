@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-import { useParams } from 'react-router-dom';
-import { getTimerData } from '../EncoderDecoder/numberLookup';
-import { splitHeadingAndInfo } from '../EncoderDecoder/scripts';
+import { useParams } from "react-router-dom";
+import { getTimerData } from "../EncoderDecoder/numberLookup";
+import { splitHeadingAndInfo } from "../EncoderDecoder/scripts";
 
 interface Props {
   primary: string;
@@ -38,7 +38,7 @@ function Timer({ primary, secondary }: Props) {
   const { context } = useParams();
   // console.log('Context: ', context);
 
-  const result = splitHeadingAndInfo(context || 'Error, check the link');
+  const result = splitHeadingAndInfo(context || "Error, check the link");
 
   const header = result.heading;
   const time = getTimerData(result.info).time;
@@ -54,42 +54,50 @@ function Timer({ primary, secondary }: Props) {
   }, [time]);
 
   return (
-    <div className="w-7/12 flex flex-col justify-center items-center">
+    <div className="w-full max-w-4xl flex flex-col justify-center items-center px-4">
       <div
         style={{ color: secondary }}
-        className="font-bold text-[64px] text-center w-full"
+        className="font-bold text-4xl md:text-5xl lg:text-[64px] text-center w-full"
       >
         {header}
       </div>
 
-      <div className="flex justify-center gap-2.5 w-3/4 mt-4">
+      <div className="flex justify-center gap-2.5 w-full max-w-lg mt-6 flex-wrap">
         <div
           style={{ color: primary, backgroundColor: secondary }}
-          className="w-28 h-28 flex flex-col items-center justify-center rounded-md"
+          className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex flex-col items-center justify-center rounded-md"
         >
-          <div className="text-4xl font-bold m-2">{vals.days}</div>
-          <div className="text-sm">Days</div>
+          <div className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-bold mb-1">
+            {vals.days}
+          </div>
+          <div className="text-xs sm:text-sm">Days</div>
         </div>
         <div
           style={{ color: primary, backgroundColor: secondary }}
-          className="w-28 h-28 flex flex-col items-center justify-center rounded-md"
+          className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex flex-col items-center justify-center rounded-md"
         >
-          <div className="text-4xl font-bold m-2">{vals.hours}</div>
-          <div className="text-sm">Hours</div>
+          <div className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-bold mb-1">
+            {vals.hours}
+          </div>
+          <div className="text-xs sm:text-sm">Hours</div>
         </div>
         <div
           style={{ color: primary, backgroundColor: secondary }}
-          className="w-28 h-28 flex flex-col items-center justify-center rounded-md"
+          className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex flex-col items-center justify-center rounded-md"
         >
-          <div className="text-4xl font-bold m-2">{vals.minutes}</div>
-          <div className="text-sm">Minutes</div>
+          <div className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-bold mb-1">
+            {vals.minutes}
+          </div>
+          <div className="text-xs sm:text-sm">Minutes</div>
         </div>
         <div
           style={{ color: primary, backgroundColor: secondary }}
-          className="w-28 h-28 flex flex-col items-center justify-center rounded-md"
+          className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex flex-col items-center justify-center rounded-md"
         >
-          <div className="text-4xl font-bold m-2">{vals.seconds}</div>
-          <div className="text-sm">Seconds</div>
+          <div className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-bold mb-1">
+            {vals.seconds}
+          </div>
+          <div className="text-xs sm:text-sm">Seconds</div>
         </div>
       </div>
     </div>

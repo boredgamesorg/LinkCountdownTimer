@@ -1,6 +1,6 @@
-import { BrowserRouter } from 'react-router-dom';
-import Handler from './Handler';
-import { ToastContainer } from 'react-toastify';
+import { BrowserRouter } from "react-router-dom";
+import Handler from "./Handler";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -8,7 +8,6 @@ function App() {
       <BrowserRouter>
         <Handler></Handler>
       </BrowserRouter>
-
       <ToastContainer />
     </>
   );
