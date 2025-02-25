@@ -1,5 +1,8 @@
-import { Theme } from '../contexts/SiteData.tsx';
-
+interface Theme {
+  font: number;
+  color: number;
+  design: number;
+}
 const BASE_70_SYMBOLS =
   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_*+,<>[]'.split(
     ''

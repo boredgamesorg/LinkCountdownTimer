@@ -2,8 +2,6 @@
 import LandingPage from './screens/LandingPage';
 import { Routes, Route, useLocation } from 'react-router-dom';
 
-import { SiteData } from './contexts/SiteData';
-import { useContext } from 'react';
 import Timer from './components/Timer';
 import Settings from './screens/Settings';
 import SettingsIcon from './components/SettingsIcon';

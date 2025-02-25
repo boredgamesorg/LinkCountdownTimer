@@ -1,11 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
-import { SiteData } from '../contexts/SiteData';
-import { useContext } from 'react';
 import { getTimerData, getTimerLink } from '../EncoderDecoder/numberLookup';
 
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface Props {
   color?: string;
@@ -15,11 +13,8 @@ interface Props {
 function LandingPage({ color, color2 }: Props) {
   const navigate = useNavigate();
 
-  const context = useContext(SiteData);
-
-  if (!context) {
-    throw new Error('Context is not available');
-  }
+  const location = useLocation();
+  const context = getTimerData(location.pathname.substring(1));
 
   const [text, setText] = useState('');
   const [dateTime, setDateTime] = useState('');
