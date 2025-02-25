@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { getTimerLink } from '../EncoderDecoder/numberLookup';
 
 function ColourSelection() {
   const location = useLocation();
@@ -27,6 +28,12 @@ function ColourSelection() {
   const [page, setPage] = useState(0);
   const changeTheme = (index: number) => {
     var path = location.pathname;
+    if (path.endsWith('/')) {
+      const current = new Date().getTime();
+      const link = getTimerLink(current, 0);
+      path = path + '-' + link;
+    }
+
     path = path.slice(0, -2) + (index + 4 * page) + path.slice(-1);
     navigate(path);
   };
