@@ -1,12 +1,13 @@
 // import SettingsIcon from './assets/settings.svg';
 import LandingPage from './screens/LandingPage';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
 import { SiteData } from './contexts/SiteData';
 import { useContext } from 'react';
 import Timer from './components/Timer';
 import Settings from './screens/Settings';
 import SettingsIcon from './components/SettingsIcon';
+import { getTimerData } from './EncoderDecoder/numberLookup';
 
 type ThemeColors = {
   primary: string;
@@ -34,40 +35,33 @@ function switchTheme(input?: number): ThemeColors {
 }
 
 function Handler() {
-  const context = useContext(SiteData);
+  const location = useLocation();
+  const themeData = getTimerData(location.pathname.substring(1));
+  // console.log(themeData);
 
-  if (!context) {
-    throw new Error('Context is not available');
-  }
-
-  const colours: ThemeColors = switchTheme(context.theme.color);
+  const colours: ThemeColors = switchTheme(themeData.theme.color);
 
   return (
     <div
       className="w-screen h-screen flex flex-col justify-center items-center"
       style={{ backgroundColor: colours.primary }}
     >
-      <BrowserRouter>
-        <SettingsIcon color={colours.secondary} />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <LandingPage color={colours.secondary} color2={colours.primary} />
-            }
-          />
-          <Route path="/settings/:context" element={<Settings />} />
-          <Route
-            path="/timer/:context"
-            element={
-              <Timer
-                primary={colours?.primary}
-                secondary={colours?.secondary}
-              />
-            }
-          />
-        </Routes>
-      </BrowserRouter>
+      <SettingsIcon color={colours.secondary} />
+      <Routes>
+        <Route
+          path="/*"
+          element={
+            <LandingPage color={colours.secondary} color2={colours.primary} />
+          }
+        />
+        <Route path="/settings/:context" element={<Settings />} />
+        <Route
+          path="/timer/:context"
+          element={
+            <Timer primary={colours?.primary} secondary={colours?.secondary} />
+          }
+        />
+      </Routes>
       <div
         className="text-xs sm:text-sm absolute right-4 bottom-4"
         style={{ color: colours?.secondary }}
