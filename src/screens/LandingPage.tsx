@@ -14,7 +14,10 @@ function LandingPage({ color, color2 }: Props) {
   const navigate = useNavigate();
 
   const location = useLocation();
-  const context = getTimerData(location.pathname.substring(1));
+  var context = getTimerData(location.pathname.substring(1));
+  if (location.pathname == '/') {
+    context = { time: 0, theme: { font: 0, color: 0, design: 0 } };
+  }
 
   const [text, setText] = useState('');
   const [dateTime, setDateTime] = useState('');
