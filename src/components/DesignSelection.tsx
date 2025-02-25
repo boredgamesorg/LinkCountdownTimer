@@ -26,7 +26,7 @@ function DesignSelection() {
       const link = getTimerLink(current, 0);
       path = path + '-' + link;
     }
-
+    path = path.slice(0, -2) + designMap[index][1] + path.slice(-1);
     path = path.slice(0, -1) + (index + 4 * page);
     navigate(path);
   };

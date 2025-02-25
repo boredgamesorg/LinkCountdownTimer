@@ -34,7 +34,7 @@ function ColourSelection() {
       path = path + '-' + link;
     }
 
-    path = path.slice(0, -2) + (index + 4 * page) + path.slice(-1);
+    path = path.slice(0, -2) + (index + 4 * page) + '0';
     navigate(path);
   };
   return (
