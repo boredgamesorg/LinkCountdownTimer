@@ -31,7 +31,7 @@ const themeMap: Record<number, ThemeColors> = {
   6: { primary: '#FFF2D7', secondary: '#F98866' },
   7: { primary: '#C2DFE5', secondary: '#65A4AC' },
   8: { primary: '#F1F1F2', secondary: '#1995AD' },
-  9: { primary: '#F1D3B2', secondary: '#46211A' },
+  9: { primary: '#000000', secondary: '#FFFFFF' },
 };
 
 const fontPairs: Record<number, ThemeFonts> = {

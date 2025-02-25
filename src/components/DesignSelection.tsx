@@ -1,42 +1,49 @@
 import { useState } from 'react';
-import placeholder from '../assets/placeholder.png';
+import Stars from '../assets/designs/stars.gif';
+import Trunk from '../assets/designs/trunk.gif';
+import Placeholder from '../assets/placeholder.png';
+import { getTimerLink } from '../EncoderDecoder/numberLookup';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function DesignSelection() {
-  const themeMap: Record<number, { primary: string; secondary: string }> = {
-    0: { primary: '#F0EDCC', secondary: '#02343F' },
-    1: { primary: '#F9EDED', secondary: '#3F418D' },
-    2: { primary: '#F8EE00', secondary: '#111A24' },
-    3: { primary: '#EF6B6E', secondary: '#F7ED7E' },
-    4: { primary: '#FCF7F7', secondary: '#9A0001' },
-    5: { primary: '#D3C5E5', secondary: '#735DA5' },
-    6: { primary: '#FFF2D7', secondary: '#F98866' },
-    7: { primary: '#C2DFE5', secondary: '#65A4AC' },
-    8: { primary: '#F1F1F2', secondary: '#1995AD' },
-    9: { primary: '#F1D3B2', secondary: '#46211A' },
-  };
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const themeEntries = Object.entries(themeMap);
-  const paginatedThemes = [
-    themeEntries.slice(0, 4),
-    themeEntries.slice(4, 8),
-    themeEntries.slice(8, 10),
+  const designMap = [
+    [Placeholder, '1'],
+    [Stars, '9'],
+    [Trunk, '9'],
   ];
 
+  const paginatedThemes = [designMap.slice(0, 4)];
+
   const [page, setPage] = useState(0);
+
+  const changeDesign = (index: number) => {
+    var path = location.pathname;
+    if (path.endsWith('/')) {
+      const current = new Date().getTime();
+      const link = getTimerLink(current, 0);
+      path = path + '-' + link;
+    }
+
+    path = path.slice(0, -1) + (index + 4 * page);
+    navigate(path);
+  };
 
   return (
     <div className="flex flex-col items-center gap-4 p-4 w-full">
       <h2 className="text-4xl sm:text-5xl">Design</h2>
       <div className="flex justify-center gap-4 w-full flex-wrap">
-        {paginatedThemes[page].map(([key, theme]) => (
+        {paginatedThemes[page].map((design, index) => (
           <div
-            id={theme.primary}
-            key={key}
+            key={index}
+            onClick={() => changeDesign(index)}
             className="rounded-lg w-24 h-24 sm:w-64 sm:h-48 lg:w-96 flex justify-center items-center text-center border-2 border-[#282828] hover:border-8 overflow-hidden"
           >
             <div className="w-full h-full flex justify-center items-center">
               <img
-                src={placeholder}
+                src={design[0]}
                 alt="Design Preview"
                 className="w-full h-full object-cover"
               />

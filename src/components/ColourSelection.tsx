@@ -16,7 +16,7 @@ function ColourSelection() {
     { primary: '#FFF2D7', secondary: '#F98866' },
     { primary: '#C2DFE5', secondary: '#65A4AC' },
     { primary: '#F1F1F2', secondary: '#1995AD' },
-    { primary: '#F1D3B2', secondary: '#46211A' },
+    { primary: '#000000', secondary: '#FFFFFF' },
   ];
 
   const paginatedThemes = [
